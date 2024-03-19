@@ -37,7 +37,7 @@
 
 - (void)setupView {
     for(int i = 0; i < _maxRating; ++i) {
-        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+        UIImageView *imageView = [[UIImageView alloc] init];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [_starViews addObject:imageView];
         [self addSubview:imageView];
@@ -46,10 +46,10 @@
 }
 
 - (void)baseInit {
-    _notSelectedStar = [[UIImage imageNamed:@"not_selected_star"] retain];
-    _selectedStar = [[UIImage imageNamed:@"selected_star"] retain];
-    _halfSelectedStar = [[UIImage imageNamed:@"half_selected_star"] retain];
-    _starViews = [[NSMutableArray array] retain];
+    _notSelectedStar = [UIImage imageNamed:@"not_selected_star" inBundle:SWIFTPM_MODULE_BUNDLE withConfiguration:nil];
+    _selectedStar = [UIImage imageNamed:@"selected_star" inBundle:SWIFTPM_MODULE_BUNDLE withConfiguration:nil];
+    _halfSelectedStar = [UIImage imageNamed:@"half_selected_star" inBundle:SWIFTPM_MODULE_BUNDLE withConfiguration:nil];
+    _starViews = [NSMutableArray array];
     _maxRating = kDefaultMaxRating;
     _midMargin = kDefaultMidMargin;
     _leftMargin = kDefaultLeftMargin;
@@ -81,15 +81,10 @@
 }
 
 - (void)dealloc {
-    [_notSelectedStar release];
     _notSelectedStar = nil;
-    [_selectedStar release];
     _selectedStar = nil;
-    [_halfSelectedStar release];
     _halfSelectedStar = nil;
-    [_starViews release];
     _starViews = nil;
-    [super dealloc];
 }
 
 - (void)layoutSubviews {
